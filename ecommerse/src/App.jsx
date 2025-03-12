@@ -10,10 +10,8 @@ function App() {
   return (
     <>
       <MainLayout>
-        {/* <MyHeader />
-        Content
-        <MyFooter /> */}
-        <MyButton />
+        <MyHeader />
+        
       </MainLayout>
     </>
   );
