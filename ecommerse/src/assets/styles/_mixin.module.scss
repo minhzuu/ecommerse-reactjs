@@ -7,7 +7,7 @@
   align-items: $y;
   gap: $gap;
 }
-@mixin btn($w, $h, $color, $radius) {
+@mixin btn($w, $h,$radius, $color :#fff) {
   width: $w;
   height: $h;
   background-color: $color;
