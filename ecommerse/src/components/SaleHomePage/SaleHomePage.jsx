@@ -10,7 +10,6 @@ function SaleHomePage() {
   useEffect(() => {
     handleTranslateX();
   }, [scrollPosition]);
-  console.log(scrollPosition);
   return (
     <div className={container}>
       <div
