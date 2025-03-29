@@ -3,10 +3,13 @@ import { dataBoxIcon, dataMenu } from "./constants";
 import Menu from "./Menu/Menu";
 import styles from "./styles.module.scss";
 import Logo from "@icons/images/logostore.png";
-import reLoadIcon from "@icons/svgs/reloadIcon.svg";
-import heartIcon from "@icons/svgs/heartIcon.svg";
-import cartIcon from "@icons/svgs/cartIcon.svg";
-
+import { TfiReload } from "react-icons/tfi";
+import { CiHeart } from "react-icons/ci";
+import { BsCart3 } from "react-icons/bs";
+import useScrollHandling from "@/hooks/useScrollHandling";
+import { useContext, useEffect, useState } from "react";
+import classNames from "classnames";
+import { SideBarContext } from "@/contexts/SideBarProvider";
 function MyHeader() {
   const {
     containerBoxIcon,
@@ -14,9 +17,33 @@ function MyHeader() {
     containerHeader,
     containerBox,
     container,
+    fixedHeader,
+    topHeader,
   } = styles;
+  const { scrollPosition } = useScrollHandling();
+  const [fixedPosition, setFixedPosition] = useState(false);
+
+  const { setIsOpen,setType } = useContext(SideBarContext);
+  const handleOpenSideBar = (type) => {
+    setIsOpen(true);
+    setType(type);
+  }
+  useEffect(() => {
+    // if(scrollPosition > 90){
+    //   setFixedPosition(true);
+    // }
+    // else{
+    //   setFixedPosition(false);
+    //   }
+    // setFixedPosition(scrollPosition > 90 ? true : false);
+    setFixedPosition(scrollPosition > 90);
+  }, [scrollPosition]);
   return (
-    <div className={container}>
+    <div
+      className={classNames(container, topHeader, {
+        [fixedHeader]: fixedPosition,
+      })}
+    >
       <div className={containerHeader}>
         <div className={containerBox}>
           <div className={containerBoxIcon}>
@@ -43,14 +70,19 @@ function MyHeader() {
           <div className={containerMenu}>
             {dataMenu.slice(3, dataMenu.length).map((item, index) => {
               return (
-                <Menu key={index + 3} content={item.content} href={item.href} />
+                <Menu
+                  key={index + 3}
+                  content={item.content}
+                  href={item.href}
+                  setIsOpen={setIsOpen}
+                />
               );
             })}
           </div>
           <div className={containerBoxIcon}>
-            <img width={26} height={26} src={reLoadIcon} alt="reload" />
-            <img width={26} height={26} src={heartIcon} alt="heart" />
-            <img width={26} height={26} src={cartIcon} alt="cart" />
+            <TfiReload onClick={()=> {handleOpenSideBar("compare") }} style={{ fontSize: "20px" }} />
+            <CiHeart onClick={()=> {handleOpenSideBar("wishlist") }} style={{ fontSize: "20px" }} />
+            <BsCart3 onClick={()=> {handleOpenSideBar("cart") }} style={{ fontSize: "20px" }} />
           </div>
         </div>
       </div>
