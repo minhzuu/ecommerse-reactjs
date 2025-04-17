@@ -19,7 +19,7 @@
         transition: transform 0.3s ease;
     }
     .boxContent {
-        @include flex_box_custom(center, flex-start, 15px);
+        @include flex_box_custom(center, flex-start, 0px);
         flex-direction: column;
         
         .title{
@@ -29,6 +29,13 @@
         .price {
             font-size: 14px;
             color: $four_color;
+            margin-top: 7px;
+        }
+        .size {
+            color: #9e9e9e;
+            margin-top: 7px;
+            margin-bottom: 10px;
+            font-size: 14px;
         }
     }
     &:hover {

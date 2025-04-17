@@ -23,23 +23,18 @@ function MyHeader() {
   const { scrollPosition } = useScrollHandling();
   const [fixedPosition, setFixedPosition] = useState(false);
 
-  const { setIsOpen,setType } = useContext(SideBarContext);
+  const { setIsOpen, setType } = useContext(SideBarContext);
   const handleOpenSideBar = (type) => {
     setIsOpen(true);
     setType(type);
-  }
+  };
+
   useEffect(() => {
-    // if(scrollPosition > 90){
-    //   setFixedPosition(true);
-    // }
-    // else{
-    //   setFixedPosition(false);
-    //   }
-    // setFixedPosition(scrollPosition > 90 ? true : false);
     setFixedPosition(scrollPosition > 90);
   }, [scrollPosition]);
+
   return (
-    <div
+    <header
       className={classNames(container, topHeader, {
         [fixedHeader]: fixedPosition,
       })}
@@ -80,13 +75,22 @@ function MyHeader() {
             })}
           </div>
           <div className={containerBoxIcon}>
-            <TfiReload onClick={()=> {handleOpenSideBar("compare") }} style={{ fontSize: "20px" }} />
-            <CiHeart onClick={()=> {handleOpenSideBar("wishlist") }} style={{ fontSize: "20px" }} />
-            <BsCart3 onClick={()=> {handleOpenSideBar("cart") }} style={{ fontSize: "20px" }} />
+            <TfiReload
+              onClick={() => handleOpenSideBar("compare")}
+              style={{ fontSize: "20px" }}
+            />
+            <CiHeart
+              onClick={() => handleOpenSideBar("wishlist")}
+              style={{ fontSize: "20px" }}
+            />
+            <BsCart3
+              onClick={() => handleOpenSideBar("cart")}
+              style={{ fontSize: "20px" }}
+            />
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 

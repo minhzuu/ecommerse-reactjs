@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import { IoMdClose } from "react-icons/io";
 function ItemProduct() {
-    const { container, boxContent,title,price,boxClose} = styles;
+    const { container, boxContent,title,price,boxClose,size} = styles;
   return (
     <div className={container}>
       <img
@@ -13,7 +13,9 @@ function ItemProduct() {
       </div>
       <div className={boxContent}>
             <div className={title}>title of product</div>
+            <div className={size}>Size:M</div>
             <div className={price}>$119</div>
+            <div className={price}>SKU: 12356 </div>
       </div>
     </div>
   );

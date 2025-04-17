@@ -2,22 +2,24 @@
 @import "@styles/variable.module.scss";
 .container {
   @include flex_box_custom(center, center, 0px);
-
+  width: 100%;
   left: 0;
   right: 0;
 }
 .topHeader {
   position: absolute;
   top: 0;
+  z-index: 100;
 }
 .fixedHeader {
   position: fixed;
   top: -93px;
-  background-color: #FFFFFFE6;
+  background-color: #ffffffe6;
   transform: translateY(93px);
   box-shadow: 2px 0px 12px 0px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(5px);
   transition: transform 700ms ease;
+  z-index: 100;
 }
 .containerHeader {
   display: flex;
@@ -31,7 +33,7 @@
 .containerBoxIcon {
   @include flex_box_custom(center, center, 20px);
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
@@ -53,6 +55,14 @@
   padding-top: 9px;
   font-size: 15px;
   color: $primary_color;
+  position: relative;
+  .subMenu {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    padding: 10px;
+    top: 40px;
+  }
 }
 .menu::after {
   content: "";

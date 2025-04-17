@@ -12,6 +12,14 @@ function ProductItem({ src, prevSrc, name, price }) {
     title,
     priceCl,
   } = styles;
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(price);
+  };
+
   return (
     <div>
       <div className={boxImg}>
@@ -27,13 +35,10 @@ function ProductItem({ src, prevSrc, name, price }) {
           <div className={boxIcon}>
             <img src={reLoadIcon} alt="" />
           </div>
-          <div className={boxIcon}>
-            <img src={cartIcon} alt="" />
-          </div>
         </div>
       </div>
       <div className={title}>{name}</div>
-      <div className={priceCl}>{price}</div>
+      <div className={priceCl}>{formatPrice(price)}</div>
     </div>
   );
 }
